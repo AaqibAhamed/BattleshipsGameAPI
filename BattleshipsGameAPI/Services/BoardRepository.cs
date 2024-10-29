@@ -89,7 +89,7 @@ namespace BattleshipsGameAPI.Services
 
             if (row < 0 || row >= 10 || col < 0 || col >= 10)
             {
-                message = "Invalid";
+                message = "Invalid Input";
                 return (false, message);
             }                          
 

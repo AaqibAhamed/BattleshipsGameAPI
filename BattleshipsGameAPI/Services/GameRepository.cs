@@ -21,7 +21,7 @@ namespace BattleshipsGameAPI.Services
             {
                 Console.Clear();
                 _boardRepository.Display();
-                Console.Write("Enter your shot (e.g., A5): ");
+                Console.Write("Enter your shot (Eg.'A5'=> Input Case-sensitive 'a5' => Invalid input): ");
                 string input = Console.ReadLine().ToUpper();
 
                 if (_boardRepository.ProcessShot(input).Item1)
