@@ -7,6 +7,7 @@ namespace BattleshipsGameAPI.Services
     {
         public char[,] grid;
         public Ship[] ships;
+       // public Ship shipPosition;
 
         public BoardRepository()
         {
@@ -77,6 +78,10 @@ namespace BattleshipsGameAPI.Services
                     grid[row + i, col] = ship.Symbol;
                 }
             }
+
+           //string? position = shipPosition?.GetShipPosition(ship);
+           
+           //Console.WriteLine(position);
 
             return true;
         }

@@ -6,8 +6,8 @@ namespace BattleshipsGameAPI.Services
     public class GameRepository : IGameRepository
     {
         private readonly IBoardRepository _boardRepository;
-        public char[,] grid;
-        public Ship[] ships;
+       // public char[,] grid;
+       // public Ship[] ships;
 
         public GameRepository(IBoardRepository boardRepository)
         {
