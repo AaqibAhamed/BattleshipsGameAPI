@@ -1,36 +1,47 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BattleshipsGameAPI.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BattleshipsGameAPI.Controllers
 {
+    [ApiController]
+    [Route("api/battleshipgame")]
     public class BattleshipGameController : ControllerBase
     {
-        private static Game game;
+        private readonly IGameRepository _gameRepository;
+        private readonly IBoardRepository _boardRepository;
 
-        [HttpPost("start")]
+        public BattleshipGameController(IGameRepository gameRepository, IBoardRepository boardRepository)
+        {
+            _gameRepository = gameRepository ?? throw new ArgumentNullException(nameof(gameRepository));
+            _boardRepository = boardRepository ?? throw new ArgumentNullException(nameof(boardRepository));
+        }
+
+        [HttpGet]
         public IActionResult StartGame()
         {
-            game = new Game();
-            game.PlaceShips();
-            return Ok("Game started!");
+            _gameRepository.Start();
+            return Ok("Game Started!");
         }
 
-        [HttpGet("status")]
-        public IActionResult GetStatus()
-        {
-            return Ok(game.GetBoardStatus());
-        }
 
         [HttpPost("shot")]
         public IActionResult Shoot([FromBody] string shot)
         {
-            var result = game.ProcessShot(shot);
-            if (!result.IsValid)
+            var (result, message) = _boardRepository.ProcessShot(shot);
+            if (!result)
             {
-                return BadRequest(result.Message);
+                return BadRequest(message);
             }
-            return Ok(result.Message);
+            return Ok(message);
         }
 
-      
+        //[HttpGet("status")]
+        //public IActionResult GetStatus()
+        //{
+        //    return Ok(_boardRepository.Display());
+        //}
+
+
+
     }
 }
