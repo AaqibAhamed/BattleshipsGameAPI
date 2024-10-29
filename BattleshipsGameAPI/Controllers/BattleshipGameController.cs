@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BattleshipsGameAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/battleshipgame")]
     public class BattleshipGameController : ControllerBase
     {
         private readonly IGameRepository _gameRepository;
@@ -20,8 +20,7 @@ namespace BattleshipsGameAPI.Controllers
         public IActionResult StartGame()
         {
             _gameRepository.Start();
-           // _boardRepository.PlaceShips();
-            return Ok("Game started!");
+            return Ok("Game Started!");
         }
 
 
