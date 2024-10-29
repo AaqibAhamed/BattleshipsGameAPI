@@ -11,7 +11,8 @@
         public ShipType Type { get; private set; }
         public char Symbol { get; private set; }
         public int Size { get; private set; }
-        private int hits;
+        
+        public int hits;
 
         public Ship(ShipType type)
         {
